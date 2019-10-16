@@ -257,7 +257,7 @@ extension DefaultSplitClient {
         }
     }
 
-    public func destroy() {
+    public func destroy(completion: ()->Void) {
         isClientDestroyed = true
         treatmentManager.destroy()
         flush()
@@ -271,5 +271,6 @@ extension DefaultSplitClient {
         impressionsManager.stop()
         trackEventsManager.stop()
         factoryDestroyHandler()
+        completion()
     }
 }

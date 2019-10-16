@@ -1,6 +1,6 @@
 //
 //  SplitClient.swift
-//  Pods
+//  Split
 //
 //  Created by Brian Sztamfater on 18/9/17.
 //

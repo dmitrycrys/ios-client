@@ -3,7 +3,7 @@
 //  Split
 //
 //  Created by Brian Sztamfater on 5/10/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Copyright © 2017 Split. All rights reserved.
 //
 
 import Foundation

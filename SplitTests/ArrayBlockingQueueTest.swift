@@ -3,7 +3,7 @@
 //  Split_Tests
 //
 //  Created by Sebastian Arrubia on 4/11/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright © 2018 Split. All rights reserved.
 //
 
 import Foundation

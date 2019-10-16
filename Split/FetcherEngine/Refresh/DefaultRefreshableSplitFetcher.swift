@@ -1,6 +1,6 @@
 //
 //  RefreshableSplitFetcher.swift
-//  Pods
+//  Split
 //
 //  Created by Brian Sztamfater on 3/10/17.
 //

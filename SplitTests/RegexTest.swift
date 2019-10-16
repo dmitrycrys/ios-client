@@ -3,7 +3,7 @@
 //  Split_Example
 //
 //  Created by Natalia  Stele on 20/02/2018.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright © 2018 Split. All rights reserved.
 //
 
 //
@@ -11,7 +11,7 @@
 //  Split
 //
 //  Created by Natalia  Stele on 11/9/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Copyright © 2017 Split. All rights reserved.
 //
 
 import Foundation

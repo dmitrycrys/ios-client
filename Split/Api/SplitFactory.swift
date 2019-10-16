@@ -1,6 +1,6 @@
 //
 //  SplitFactory.swift
-//  Pods
+//  Split
 //
 //  Created by Brian Sztamfater on 27/9/17.
 //

@@ -1,6 +1,6 @@
 //
 //  HttpSplitChangeFetcher.swift
-//  Pods
+//  Split
 //
 //  Created by Brian Sztamfater on 19/9/17.
 //
