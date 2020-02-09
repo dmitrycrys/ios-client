@@ -38,7 +38,7 @@ public class LocalhostSplitFactory: NSObject, SplitFactory {
         return Version.sdk
     }
 
-    init(key: Key, config: SplitClientConfig, bundle: Bundle) {
+    init(key: Key, config: SplitClientConfig, bundle: Bundle, copyBundleConfigFile: Bool = true) {
 
         eventsManager = DefaultSplitEventsManager(config: config)
         eventsManager.start()
@@ -51,7 +51,8 @@ public class LocalhostSplitFactory: NSObject, SplitFactory {
                                                                splitCache: splitCache,
                                                                eventsManager: eventsManager,
                                                                splitsFileName: config.splitFile,
-                                                               bundle: bundle)
+                                                               bundle: bundle,
+                                                               copyBundleConfigFile: copyBundleConfigFile)
         localhostClient = LocalhostSplitClient(key: key, splitFetcher: splitFetcher, eventsManager: eventsManager)
         eventsManager.getExecutorResources().setClient(client: localhostClient)
         localhostManager = DefaultSplitManager(splitCache: splitCache)

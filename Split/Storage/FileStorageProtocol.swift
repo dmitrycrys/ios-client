@@ -13,4 +13,5 @@ protocol FileStorageProtocol {
     func write(fileName: String, content: String?)
     func delete(fileName: String)
     func readWithProperties(fileName: String) -> String?
+    func isFileExists(fileName: String) -> Bool
 }

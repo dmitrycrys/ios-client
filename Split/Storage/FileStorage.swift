@@ -86,6 +86,15 @@ class FileStorage: FileStorageProtocol {
         return nil
     }
 
+    func isFileExists(fileName: String) -> Bool {
+        if let dataFolderUrl = getDataFolder() {
+            let fileURL = dataFolderUrl.appendingPathComponent(fileName)
+            return (try? fileURL.checkResourceIsReachable()) ?? false
+        }
+
+        return false
+    }
+
     private func getDataFolder() -> URL? {
 
         if dataFolderUrl != nil {

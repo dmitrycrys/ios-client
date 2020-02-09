@@ -10,7 +10,7 @@ import Foundation
 @testable import Split
 
 class FileStorageStub: FileStorageProtocol {
-    
+   
     private var queue: DispatchQueue
     private var files: [String: String]
     
@@ -46,5 +46,13 @@ class FileStorageStub: FileStorageProtocol {
             content = files[fileName]
         }
         return content
+    }
+    
+    func isFileExists(fileName: String) -> Bool {
+        var content: String?
+        queue.sync {
+            content = files[fileName]
+        }
+        return content != nil
     }
 }

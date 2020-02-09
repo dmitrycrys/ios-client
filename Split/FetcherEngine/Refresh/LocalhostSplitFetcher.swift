@@ -22,18 +22,21 @@ class LocalhostSplitFetcher: RefreshableSplitFetcher {
     private var fileParser: LocalhostSplitsParser!
     private let supportedExtensions = ["yaml", "yml", "splits"]
     private let fileName: String
+    private let copyBundleConfigFile: Bool
 
     init(fileStorage: FileStorageProtocol,
          splitCache: SplitCacheProtocol,
          config: LocalhostSplitFetcherConfig = LocalhostSplitFetcherConfig(),
          eventsManager: SplitEventsManager,
-         splitsFileName: String, bundle: Bundle) {
+         splitsFileName: String, bundle: Bundle,
+         copyBundleConfigFile: Bool = true) {
 
         self.fileName = splitsFileName
         self.fileStorage = fileStorage
         self.refreshInterval = config.refreshInterval
         self.eventsManager = eventsManager
         self.splitCache = splitCache
+        self.copyBundleConfigFile = copyBundleConfigFile
 
         let fileName = splitsFileName
         guard let fileInfo = splitFileName(fileName) else {
@@ -51,12 +54,14 @@ class LocalhostSplitFetcher: RefreshableSplitFetcher {
             return
         }
 
-        if !LocalhostFileCopier(bundle: bundle).copySourceFile(name: fileInfo.name,
-                                                               type: fileInfo.type,
-                                                               fileStorage: fileStorage) {
-            eventsManager.notifyInternalEvent(SplitInternalEvent.sdkReadyTimeoutReached)
-            Logger.e("Localhost file name \(fileName) not found. Please check name.")
-            return
+        if copyBundleConfigFile || !fileStorage.isFileExists(fileName: fileName) {
+            if !LocalhostFileCopier(bundle: bundle).copySourceFile(name: fileInfo.name,
+                                                                   type: fileInfo.type,
+                                                                   fileStorage: fileStorage) {
+                eventsManager.notifyInternalEvent(SplitInternalEvent.sdkReadyTimeoutReached)
+                Logger.e("Localhost file name \(fileName) not found. Please check name.")
+                return
+            }
         }
 
         self.fileParser = parser(for: fileInfo.type)

@@ -24,6 +24,7 @@ import Foundation
     private var key: Key?
     private var config: SplitClientConfig?
     private let kApiKeyLocalhost = "LOCALHOST"
+    private let kApiKeyDeviceLocalhost = "DEVICE"
     private let keyValidator: KeyValidator
     private let apiKeyValidator: ApiKeyValidator
     var validationLogger: ValidationMessageLogger
@@ -110,10 +111,15 @@ import Foundation
             factory = LocalhostSplitFactory(key: finalKey,
                                             config: config ?? SplitClientConfig(),
                                             bundle: bundle)
+        } else if apiKey?.uppercased() == kApiKeyDeviceLocalhost {
+            factory = LocalhostSplitFactory(key: finalKey,
+                                            config: config ?? SplitClientConfig(),
+                                            bundle: bundle,
+                                            copyBundleConfigFile: false)
         } else {
             factory = DefaultSplitFactory(apiKey: apiKey!,
-                                   key: finalKey,
-                                   config: config ?? SplitClientConfig())
+                                          key: finalKey,
+                                          config: config ?? SplitClientConfig())
         }
 
         DefaultSplitFactoryBuilder.factoryMonitor.register(instance: factory, for: apiKey!)
